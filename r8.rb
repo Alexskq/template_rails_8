@@ -11,7 +11,7 @@ inject_into_file "Gemfile", before: "group :development, :test do" do
     gem "devise"
     gem "simple_form", github: "heartcombo/simple_form"
     # Added
-    # gem "tailwindcss-rails"
+    gem "tailwindcss-rails"
     gem "simple_form-tailwind"
 
   RUBY
