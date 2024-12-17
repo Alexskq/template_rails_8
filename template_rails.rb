@@ -169,5 +169,5 @@ EOF"
   # Git
   ########################################
   git add: "."
-  git commit: "-m 'Initial commit made by Arnaud & Alex Wagoners'" -n
+  git commit: "-m 'Initial commit made by Arnaud & Alex Wagoners' -n" 
 end
