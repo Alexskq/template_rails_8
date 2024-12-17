@@ -156,6 +156,11 @@ after_bundle do
   #########################################
   run "npm install --save-dev husky"
   run "npx husky init"
+  run "rm -f .husky/pre-commit"
+  run "cat <<EOF > .husky/pre-commit
+#!rubocop
+rubocop
+EOF"
   run "cat <<EOF > .husky/post-merge
 #!/bin/bash
 echo 'Installing Ruby dependencies...'
