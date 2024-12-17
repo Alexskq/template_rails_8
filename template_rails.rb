@@ -14,7 +14,7 @@ end
 
 inject_into_file "Gemfile", after: "group :development do\n" do
   <<~RUBY
-    gem "rails_live_reload"
+  \  gem "rails_live_reload"
   RUBY
 end
 
