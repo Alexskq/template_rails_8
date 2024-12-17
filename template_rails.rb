@@ -152,6 +152,19 @@ after_bundle do
   ########################################
   run "bundle lock --add-platform x86_64-linux"
 
+  # Hook
+  #########################################
+  run "npm install --save-dev husky"
+  run "npx husky init"
+  run "cat <<EOF > .husky/post-merge
+      #!/bin/bash
+      echo 'Installing Ruby dependencies...'
+      bundle install
+      echo 'Installing npm dependencies...'
+      npm install
+      echo 'Running database migrations...'
+      rails db:migrate
+      EOF"
 
   # Git
   ########################################
