@@ -237,5 +237,5 @@ after_bundle do
   ########################################
   git :init
   git add: "."
-  git commit: "-m 'Initial commit made by Arnaud & Alex Wagoners"
+  git commit: "-m 'Initial commit made by Arnaud & Alex Wagoners'"
 end
