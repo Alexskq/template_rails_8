@@ -6,7 +6,7 @@ Quickly generate a rails app configuration using [Rails Templates](http://guides
 
 ```bash
 rails new \
-    -d postgresql
+    -d postgresql \
     -m https://raw.githubusercontent.com/Alexskq/bp_r8/refs/heads/master/template_rails.rb \
     YOUR_APP_NAME
 
