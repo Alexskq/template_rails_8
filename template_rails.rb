@@ -4,36 +4,23 @@ run "if uname | grep -q 'Darwin'; then pgrep spring | xargs kill -9; fi"
 ########################################
 inject_into_file "Gemfile", before: "group :development, :test do" do
   <<~RUBY
-  #gem "bootstrap", "~> 5.2"
-  #gem "sassc-rails"
-    #gem "font-awesome-sass", "~> 6.1"
-    #gem "autoprefixer-rails"
+  add_source "https://github.com/heartcombo/devise" do
     gem "devise"
+  end
     gem "simple_form", github: "heartcombo/simple_form"
-    # Added
     gem "tailwindcss-rails"
     gem "simple_form-tailwind"
 
   RUBY
 end
 
-# inject_into_file "Gemfile", after: "group :development, :test do" do
-#   "\n  gem \"dotenv-rails\""
-  
-# end
 
 gem_group :development do
   gem "rails_live_reload"
 end
 
 
-# Assets
-########################################
-#run "rm -rf app/assets/stylesheets"
-#run "rm -rf vendor"
-#run "curl -L https://github.com/lewagon/rails-stylesheets/archive/master.zip > stylesheets.zip"
-#run "unzip stylesheets.zip -d app/assets && rm -f stylesheets.zip && rm -f app/assets/rails-stylesheets-master/README.md"
-#run "mv app/assets/rails-stylesheets-master app/assets/stylesheets"
+
 
 # Layout
 ########################################
