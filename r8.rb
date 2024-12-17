@@ -211,12 +211,15 @@ after_bundle do
   # npm
   if system("which npm > /dev/null 2>&1")
     run "npm i -D daisyui@latest"
-    config_path = ::Rails.root.join('config/tailwind.config.js')
-    config = File.read(config_path)
-    config.sub!('content: [', "content: [\n \"./config/initializers/*.rb\",")
-    config.sub!('plugins: [', "plugins: [\n require(\"daisyui\"),")
-    File.write(config_path, config)
+  
+    # Insérer 'require("daisyui")' dans tailwind.config.js
+    inject_into_file "config/tailwind.config.js", after: "plugins: [" do
+      <<~RUBY
+        require("daisyui"),
+      RUBY
+    end
   end
+  
 
   # Heroku
   ########################################
