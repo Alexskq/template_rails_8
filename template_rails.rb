@@ -11,8 +11,10 @@ inject_into_file "Gemfile", before: "group :development, :test do" do
   RUBY
 end
 
-inject_into_file "Gemfile", before: "group :development do" do
+inject_into_file "Gemfile", after: "group :development do\n" do
+  <<~RUBY
   gem "rails_live_reload"
+  RUBY
 end
 
 # Flashes
