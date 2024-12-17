@@ -121,45 +121,46 @@ end
 ########################################
 after_bundle do
 
-  # Tailwind
-  ########################################
-  rails_command "tailwindcss:install"
   # Generators: db + simple form + pages controller
   ########################################
   rails_command "db:reset"
   generate("simple_form:install")
   generate("simple_form:tailwind:install")
   generate(:controller, "pages", "home", "--skip-routes")
-
+  
   # Routes
   ########################################
   route 'root to: "pages#home"'
-
+  
   # Gitignore
   ########################################
   append_file ".gitignore", <<~TXT
-    # Ignore .env file containing credentials.
-    .env*
-
-    # Ignore Mac and Linux file system files
-    *.swp
-    .DS_Store
+  # Ignore .env file containing credentials.
+  .env*
+  
+  # Ignore Mac and Linux file system files
+  *.swp
+  .DS_Store
   TXT
-
+  
   # Devise install + user
   ########################################
   generate("devise:install")
   generate("devise", "User")
-
+  
+  # Tailwind
+  ########################################
+  rails_command "tailwindcss:install"
+  
   # Application controller
   ########################################
   run "rm app/controllers/application_controller.rb"
   file "app/controllers/application_controller.rb", <<~RUBY
-    class ApplicationController < ActionController::Base
-      before_action :authenticate_user!
-    end
+  class ApplicationController < ActionController::Base
+    before_action :authenticate_user!
+  end
   RUBY
-
+  
   # migrate + devise views
   ########################################
   rails_command "db:migrate"
