@@ -216,7 +216,6 @@ after_bundle do
     config.sub!('content: [', "content: [\n \"./config/initializers/*.rb\",")
     config.sub!('plugins: [', "plugins: [\n require(\"daisyui\"),")
     File.write(config_path, config)
-
   end
 
   # Heroku
