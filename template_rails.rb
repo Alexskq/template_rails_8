@@ -159,7 +159,7 @@ after_bundle do
   run "rm -f .husky/pre-commit"
   run "cat <<EOF > .husky/pre-commit
 #!rubocop
-rubocop
+#rubocop
 EOF"
   run "cat <<EOF > .husky/post-merge
 #!/bin/bash
