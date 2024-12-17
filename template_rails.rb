@@ -212,15 +212,20 @@ after_bundle do
   #   //= link popper.js
   #   //= link bootstrap.min.js
   # JS
-   
-  # npm
-  if system("which npm > /dev/null 2>&1")
-    run "npm i -D daisyui@latest"
-  
-    # Insérer 'require("daisyui")' dans tailwind.config.js
-    gsub_file "config/tailwind.config.js", /require\('@tailwindcss\/container-queries'\),/ do |match|
-      "#{match}\n    require(\"daisyui\"),"
-    end
+
+  # Tailwind install + npm daisyui
+  ########################################
+ 
+  inject_into_file "config/tailwind.config.js", after: "content: [\n" do
+    <<~JS
+      \    './config/initializers/*.rb',
+    JS
+  end
+  run "npm i -D daisyui@latest"
+  inject_into_file "config/tailwind.config.js", after: "plugins: [\n" do
+    <<~JS
+      \    require("daisyui"),
+    JS
   end
 
   # Heroku
