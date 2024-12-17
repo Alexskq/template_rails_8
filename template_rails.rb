@@ -155,7 +155,6 @@ after_bundle do
 
   # Git
   ########################################
-  git :init
   git add: "."
   git commit: "-m 'Initial commit made by Arnaud & Alex Wagoners'"
 end
