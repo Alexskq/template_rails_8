@@ -5,16 +5,14 @@ run "if uname | grep -q 'Darwin'; then pgrep spring | xargs kill -9; fi"
 inject_into_file "Gemfile", before: "group :development, :test do" do
   <<~RUBY
  
-    gem "simple_form", github: "heartcombo/simple_form"
+    gem "simple_form"
     gem "tailwindcss-rails"
     gem "simple_form-tailwind"
 
   RUBY
 end
 
-add_source "https://github.com/heartcombo/devise" do
-  gem "devise"
-end
+add_source "https://github.com/heartcombo/devise"
 
 
 gem_group :development do
