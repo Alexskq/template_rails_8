@@ -157,14 +157,14 @@ after_bundle do
   run "npm install --save-dev husky"
   run "npx husky init"
   run "cat <<EOF > .husky/post-merge
-      #!/bin/bash
-      echo 'Installing Ruby dependencies...'
-      bundle install
-      echo 'Installing npm dependencies...'
-      npm install
-      echo 'Running database migrations...'
-      rails db:migrate
-      EOF"
+#!/bin/bash
+echo 'Installing Ruby dependencies...'
+bundle install
+echo 'Installing npm dependencies...'
+npm install
+echo 'Running database migrations...'
+rails db:migrate
+EOF"
 
   # Git
   ########################################
