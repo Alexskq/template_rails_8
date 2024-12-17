@@ -213,9 +213,9 @@ after_bundle do
     run "npm i -D daisyui@latest"
   
     # Insérer 'require("daisyui")' dans tailwind.config.js
-    inject_into_file "config/tailwind.config.js", after: "plugins: [" do
+    inject_into_file "config/tailwind.config.js", after: "plugins: [require('@tailwindcss/forms'),\n  require('@tailwindcss/typography'),\n  require('@tailwindcss/container-queries')," do
       <<~RUBY
-        require("daisyui"),
+        'require("daisyui"),'
       RUBY
     end
   end
