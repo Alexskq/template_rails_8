@@ -11,7 +11,7 @@ inject_into_file "Gemfile", before: "group :development, :test do" do
     gem "devise"
     gem "simple_form", github: "heartcombo/simple_form"
     # Added
-    gem "tailwindcss-rails"
+    # gem "tailwindcss-rails"
     gem "simple_form-tailwind"
 
   RUBY
@@ -211,7 +211,7 @@ after_bundle do
   # npm
   if system("which npm > /dev/null 2>&1")
     run "npm i -D daisyui@latest"
-    config_path = Rails.root.join('config/tailwind.config.js')
+    config_path = ::Rails.root.join('config/tailwind.config.js')
     config = File.read(config_path)
     config.sub!('content: [', "content: [\n \"./config/initializers/*.rb\",")
     config.sub!('plugins: [', "plugins: [\n require(\"daisyui\"),")
