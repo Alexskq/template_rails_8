@@ -120,6 +120,10 @@ end
 # After bundle
 ########################################
 after_bundle do
+
+  # Tailwind
+  ########################################
+  rails_command "tailwindcss:install"
   # Generators: db + simple form + pages controller
   ########################################
   rails_command "db:reset"
