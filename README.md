@@ -22,3 +22,20 @@ rails new \
 - ```rails_live_reload```
 
 
+```bash
+rails new \
+    -d postgresql \
+    -m https://raw.githubusercontent.com/Alexskq/bp_r8/refs/heads/master/minimal.rb \
+    YOUR_APP_NAME
+
+```
+
+## 🛠️ Specs
+
+- ```Rails 8```
+- ```TailwindCSS```
+- ```Flowbite```
+- ```Devise```
+- ```Simple_form```
+- ```DaisyUI```
+- ```rails_live_reload```
