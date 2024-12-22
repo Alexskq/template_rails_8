@@ -22,7 +22,7 @@ end
 ########################################
 file "app/views/shared/_flashes.html.erb", <<~HTML
   <% if notice %>
-   <div role="alert" class="alert alert-info">
+    <div role="alert" class="alert alert-info">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -73,31 +73,31 @@ after_bundle do
   generate("simple_form:install")
   generate("simple_form:tailwind:install")
   generate(:controller, "pages", "home", "--skip-routes")
-  
+
   # Routes
   ########################################
   route 'root to: "pages#home"'
-  
+
   # Gitignore
   ########################################
   append_file ".gitignore", <<~TXT
   # Ignore .env file containing credentials.
   .env*
-  
+
   # Ignore Mac and Linux file system files
   *.swp
   .DS_Store
   TXT
-  
+
   # Devise install + user
   ########################################
   generate("devise:install")
   generate("devise", "User")
-  
+
   # Tailwind
   ########################################
   rails_command "tailwindcss:install"
-  
+
   # Application controller
   ########################################
   run "rm app/controllers/application_controller.rb"
@@ -106,7 +106,7 @@ after_bundle do
     before_action :authenticate_user!
   end
   RUBY
-  
+
   # migrate + devise views
   ########################################
   rails_command "db:migrate"
@@ -135,7 +135,7 @@ after_bundle do
 
   # Tailwind install + npm daisyui
   ########################################
- 
+
   inject_into_file "config/tailwind.config.js", after: "content: [\n" do
     <<~JS
       \    './config/initializers/*.rb',
@@ -156,23 +156,30 @@ after_bundle do
   #########################################
   run "npm install --save-dev husky"
   run "npx husky init"
-  run "rm -f .husky/pre-commit"
-  run "cat <<EOF > .husky/pre-commit
-#!rubocop
-#rubocop
-EOF"
-  run "cat <<EOF > .husky/post-merge
+  remove_file ".husky/pre-commit", force: true
+  create_file ".husky/pre-commit", <<-EOF
 #!/bin/bash
+
+rubocop -A || true
+git add .
+EOF
+create_file ".husky/post-commit", <<-EOF
+#!/bin/bash
+
+rubocop || true
+echo "\\nRun \\033[0;33mrubocop -A\\033[0m to auto-correct them."
+EOF
+  create_file ".husky/post-merge", <<-EOF
 echo 'Installing Ruby dependencies...'
 bundle install
 echo 'Installing npm dependencies...'
 npm install
 echo 'Running database migrations...'
 rails db:migrate
-EOF"
+EOF
 
   # Git
   ########################################
   git add: "."
-  git commit: "-m 'Initial commit made by Arnaud & Alex Wagoners' -n" 
+  git commit: "-m 'Initial commit made by Arnaud & Alex Wagoners' -n"
 end
