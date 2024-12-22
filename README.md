@@ -14,7 +14,7 @@ rails new \
 
 ```
 
-## 🛠️ Specs
+### 🛠️ Specs
 
 - ```Rails 8```
 - ```TailwindCSS```
@@ -33,7 +33,7 @@ rails new \
 
 ```
 
-## 🛠️ Specs
+### 🛠️ Specs
 
 - ```Rails 8```
 - ```TailwindCSS```
