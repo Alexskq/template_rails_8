@@ -34,7 +34,7 @@ rbenv global 3.3.5
 ```bash
 rails new \
   -d postgresql \
-  -m https://raw.githubusercontent.com/Alexskq/template_rails_8/refs/heads/master/minimal.rb \
+  -m https://raw.githubusercontent.com/Alexskq/template_rails_8/master/minimal.rb \
   CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
 
