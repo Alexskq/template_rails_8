@@ -1,8 +1,10 @@
-# 🖼️ Template Rails 8
+# 🖼️ Template Rails 8 | Ruby 3.3.5
 
 Quickly generate a rails app configuration using [Rails Templates](http://guides.rubyonrails.org/rails_application_templates.html).
 
 ⚠️ This tempate is made for Rails 8.
+
+## Template_rails
 
 ```bash
 rails new \
@@ -21,6 +23,7 @@ rails new \
 - ```DaisyUI```
 - ```rails_live_reload```
 
+## Minimal
 
 ```bash
 rails new \
