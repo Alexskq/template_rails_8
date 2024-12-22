@@ -22,7 +22,7 @@ end
 ########################################
 file "app/views/shared/_flashes.html.erb", <<~HTML
   <% if notice %>
-   <div role="alert" class="alert alert-info">
+    <div role="alert" class="alert alert-info">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
