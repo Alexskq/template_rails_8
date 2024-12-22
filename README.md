@@ -25,12 +25,17 @@ rails new \
 
 ## Minimal
 
+```sh
+gem update rails
+rbenv install 3.3.5
+rbenv global 3.3.5
+```
+
 ```bash
 rails new \
-    -d postgresql \
-    -m https://raw.githubusercontent.com/Alexskq/bp_r8/refs/heads/master/minimal.rb \
-    YOUR_APP_NAME
-
+  -d postgresql \
+  -m https://raw.githubusercontent.com/Alexskq/template_rails_8/refs/heads/master/minimal.rb \
+  CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
 
 ### 🛠️ Specs
