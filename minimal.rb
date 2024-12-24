@@ -91,6 +91,9 @@ after_bundle do
   # Ignore Mac and Linux file system files
   *.swp
   .DS_Store
+
+  # Node Modules
+  node_modules/
   TXT
 
   # Devise install + user
@@ -139,6 +142,7 @@ after_bundle do
 
   # Tailwind install + npm daisyui + flowbite
   ########################################
+  run "npm init -y"
   run "npm i -D daisyui@latest"
   run "npm i flowbite"
   inject_into_file "config/tailwind.config.js", after: "content: [\n" do
