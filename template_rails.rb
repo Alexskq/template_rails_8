@@ -10,7 +10,7 @@ inject_into_file "Gemfile", before: "group :development, :test do" do
     gem "tailwindcss-ruby"
     gem "tailwindcss-rails"
     ####
-    gem "simple_form-tailwind"
+    gem "simple_form-tailwind", path: "https://github.com/Alexskq/simple_form-tailwind.git"
 
   RUBY
 end
@@ -163,7 +163,7 @@ after_bundle do
       yarn add -D daisyui@latest
     fi
   BASH
-  inject_into_file "app.css", after: "@import \"tailwindcss\" do\n" do
+  inject_into_file "application.css", after: "@import \"tailwindcss\" do\n" do
     <<~JS
       \    @plugin "daisyui";
     JS
