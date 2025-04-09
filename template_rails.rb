@@ -164,10 +164,10 @@ after_bundle do
     fi
   BASH
   
-  inject_into_file "/app/assets/tailwind/application.css", after: "@import \"tailwindcss\" do\n" do
-    <<~JS
-      \    @plugin "daisyui";
-    JS
+  inject_into_file "app/assets/tailwind/application.css", after: "@import \"tailwindcss\";\n" do
+    <<~CSS
+      @plugin "daisyui";
+    CSS
   end
   # inject_into_file "config/tailwind.config.js", after: "plugins: [\n" do
   #   <<~JS
