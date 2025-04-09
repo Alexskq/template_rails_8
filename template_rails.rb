@@ -163,7 +163,7 @@ after_bundle do
       yarn add -D daisyui@latest
     fi
   BASH
-  inject_into_file "application.css", after: "@import \"tailwindcss\" do\n" do
+  inject_into_file "/app/assets/tailwind/application.css", after: "@import \"tailwindcss\" do\n" do
     <<~JS
       \    @plugin "daisyui";
     JS
