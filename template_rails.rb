@@ -6,7 +6,10 @@ inject_into_file "Gemfile", before: "group :development, :test do" do
   <<~RUBY
     gem "devise"
     gem "simple_form"
+    # Tailwind v4
+    gem "tailwindcss-ruby"
     gem "tailwindcss-rails"
+    ####
     gem "simple_form-tailwind"
 
   RUBY
@@ -136,17 +139,40 @@ after_bundle do
   # Tailwind install + npm daisyui
   ########################################
  
-  inject_into_file "config/tailwind.config.js", after: "content: [\n" do
+  # inject_into_file "config/tailwind.config.js", after: "content: [\n" do
+  #   <<~JS
+  #     \    './config/initializers/*.rb',
+  #   JS
+  # end
+  # --------------------
+  # Update DaisyUI
+  # --------------------
+   # À la place de: run "npm i -D daisyui@latest"
+  # Utilisez cette version qui permet de choisir entre pnpm, npm ou yarn
+  
+  # Detect and use available package manager (preference: pnpm > npm > yarn)
+  run <<~BASH
+    if command -v pnpm &> /dev/null; then
+      echo "Installing DaisyUI with pnpm..."
+      pnpm add -D daisyui@latest
+    elif command -v npm &> /dev/null; then
+      echo "Installing DaisyUI with npm..."
+      npm i -D daisyui@latest
+    else
+      echo "Installing DaisyUI with yarn..."
+      yarn add -D daisyui@latest
+    fi
+  BASH
+  inject_into_file "app.css", after: "@import \"tailwindcss\" do\n" do
     <<~JS
-      \    './config/initializers/*.rb',
+      \    @plugin "daisyui";
     JS
   end
-  run "npm i -D daisyui@latest"
-  inject_into_file "config/tailwind.config.js", after: "plugins: [\n" do
-    <<~JS
-      \    require("daisyui"),
-    JS
-  end
+  # inject_into_file "config/tailwind.config.js", after: "plugins: [\n" do
+  #   <<~JS
+  #     \    require("daisyui"),
+  #   JS
+  # end
 
   # Heroku
   ########################################
