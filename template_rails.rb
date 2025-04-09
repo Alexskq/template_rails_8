@@ -167,7 +167,7 @@ after_bundle do
   inject_into_file "app/assets/tailwind/application.css", after: "@import \"tailwindcss\";\n" do
     <<~CSS
       @plugin "daisyui" {
-           themes: light --default, dark --prefersdark;
+           themes: light --default, dark;
           }
     CSS
   end
