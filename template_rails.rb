@@ -139,6 +139,17 @@ after_bundle do
   # Tailwind install + npm daisyui
   ########################################
  
+  # inject_into_file "config/tailwind.config.js", after: "content: [\n" do
+  #   <<~JS
+  #     \    './config/initializers/*.rb',
+  #   JS
+  # end
+  # --------------------
+  # Update DaisyUI
+  # --------------------
+   # À la place de: run "npm i -D daisyui@latest"
+  # Utilisez cette version qui permet de choisir entre pnpm, npm ou yarn
+  
   # Detect and use available package manager (preference: pnpm > npm > yarn)
   run <<~BASH
     if command -v pnpm &> /dev/null; then
@@ -152,13 +163,17 @@ after_bundle do
       yarn add -D daisyui@latest
     fi
   BASH
-
-  # Configuration de DaisyUI dans le fichier de configuration Tailwind
-  inject_into_file "config/tailwind.config.js", after: "plugins: [\n" do
+  
+  inject_into_file "/app/assets/tailwind/application.css", after: "@import \"tailwindcss\" do\n" do
     <<~JS
-      require("daisyui"),
+      \    @plugin "daisyui";
     JS
   end
+  # inject_into_file "config/tailwind.config.js", after: "plugins: [\n" do
+  #   <<~JS
+  #     \    require("daisyui"),
+  #   JS
+  # end
 
   # Heroku
   ########################################
