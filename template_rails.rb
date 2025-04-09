@@ -10,7 +10,7 @@ inject_into_file "Gemfile", before: "group :development, :test do" do
     gem "tailwindcss-ruby"
     gem "tailwindcss-rails"
     ####
-    gem "simple_form-tailwind", git: "https://github.com/Alexskq/simple_form-tailwind.git"
+    gem "simple_form-tailwind", github: "Alexskq/simple_form-tailwind"
 
   RUBY
 end
