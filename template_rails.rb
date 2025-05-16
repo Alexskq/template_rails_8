@@ -183,8 +183,8 @@ after_bundle do
 
   # Hook
   #########################################
-  run "npm install --save-dev husky"
-  run "npx husky init"
+  run "pnpm install --save-dev husky"
+  run "pnpx husky init"
   remove_file ".husky/pre-commit", force: true
   create_file ".husky/pre-commit", <<-EOF
 #!/bin/bash
